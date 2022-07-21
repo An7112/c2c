@@ -8,7 +8,7 @@ body {
   position: relative;
   min-height: 100vh;
   width: 100%;
-  overflow:scroll;
+  overflow: scroll;
   background-color: #F5F7FA;
 }
 
@@ -16,6 +16,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, "Courier New",
     monospace;
 }
+
 * {
   margin: 0;
   padding: 0;

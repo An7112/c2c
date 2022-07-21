@@ -79,15 +79,6 @@ const MainMenu = () => {
             <span className="tooltip">Your shop</span>
           </li>
         </Link>
-        <Link className="linktext" to="/File">
-          <li className={splitLocation[1] === "File" ? "activeNav" : ""}>
-            <a>
-              <i class="bx bx-folder"></i>
-              <span className="links_name">File Manager</span>
-            </a>
-            <span className="tooltip">File Manager</span>
-          </li>
-        </Link>
         <Link className="linktext" to="/Order">
           <li className={splitLocation[1] === "Order" ? "activeNav" : ""}>
             <a>
