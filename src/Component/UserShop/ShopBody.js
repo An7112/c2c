@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HeaderMain from '../Header'
+import CreateProduct from './CreateProduct'
 import './Shop.css'
 export class ShopBody extends Component {
   constructor(props) {
@@ -65,6 +66,7 @@ export class ShopBody extends Component {
           <div className='header_link_shop'>
             <div className='walk' onClick={() => this.setState({header_link:'walk'})}>
               <h5>Walk</h5>
+              {/* <CreateProduct/> */}
             </div>
             <div className='walk' onClick={() => this.setState({header_link:'ALL_PRODUCTS'})}>
               <h5>ALL PRODUCTS</h5>

@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 const SellerP = require('../model/Seller_product_Model')
-const url = req.protocol + "://" + req.get("host")
+
 exports.GetProduct = async (req, res) => {
     try{
         const GetData = await SellerP.find();
@@ -11,6 +11,7 @@ exports.GetProduct = async (req, res) => {
 }
 
 exports.CreateProduct = async (req, res) => {
+    const url = req.protocol + "://" + req.get("host")
     const CrData = new SellerP({
         ProductImg:url+"/public/" + req.file.filename,
         IdSeller: req.body.IdSeller,
@@ -64,6 +65,7 @@ exports.DeleteProduct = (req, res) => {
 }
 
 exports.UpdateProduct = async (req, res) => {
+    const url = req.protocol + "://" + req.get("host")
     const UpdatePr = {
         ProductImg:url+"/public/" + req.file.filename,
         IdSeller: req.body.IdSeller,
