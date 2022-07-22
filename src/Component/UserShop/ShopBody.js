@@ -2,6 +2,12 @@ import React, { Component } from 'react'
 import HeaderMain from '../Header'
 import './Shop.css'
 export class ShopBody extends Component {
+  constructor(props) {
+    super(props)
+    this.state = {
+      header_link:'Walk'
+    }
+  }
   render() {
     return (
       <div className="home_content">
@@ -55,6 +61,18 @@ export class ShopBody extends Component {
                 </div>
               </div>
             </div>
+          </div>
+          <div className='header_link_shop'>
+            <div className='walk' onClick={() => this.setState({header_link:'walk'})}>
+              <h5>Walk</h5>
+            </div>
+            <div className='walk' onClick={() => this.setState({header_link:'ALL_PRODUCTS'})}>
+              <h5>ALL PRODUCTS</h5>
+            </div>
+            <div className='walk'onClick={() => this.setState({header_link:'T_Shirt'})}>
+              <h5>T-Shirt</h5>
+            </div>
+            <div className='all_product'></div>
           </div>
         </div>
       </div>

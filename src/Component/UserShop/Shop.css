@@ -12,7 +12,7 @@
     display: flex;
     flex-direction: row;
     justify-content: space-around;
-    width: 70%;
+    width: 71%;
     height: 230px;
     /* background-color: black; */
 }
@@ -98,7 +98,28 @@
     border-radius: 8px;
     border: 1px solid black;
 }
-
+.header_link_shop{
+    display: flex;
+    flex-direction: row;
+    margin-top: 1rem;
+    width: 70%;
+    height: 50px;
+}
+.header_link_shop .walk{
+    cursor: pointer;
+    width: 20%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header_link_shop .walk:hover{
+    border-bottom: 2px solid gray;
+}
+.walk h5{
+    color: black;
+    font-size: 15px;
+}
 @media screen and (max-width:700px) {
 
     .shop_content {
@@ -112,8 +133,26 @@
         width: 90%;
         height: 80px;
     }
+    .shop_content .box_seller{
+        width: 98%;
+    }
     .box_seller .box_like{
         width: calc(96% / 3);
         height: 100%;
+    }
+    .child_box_like i, h5{
+        padding: 0;
+        font-size: 5px;
+    }
+    .box_user_sell .ava_shop_on{
+        height: 48%;
+        font-size: 5px;
+    }
+    .ava_shop_on .name_on_shop h5{
+        padding: 0;
+    }
+    .box_user_sell .follow_chat{
+        margin-top: 5%;
+        font-size: 6px;
     }
 }

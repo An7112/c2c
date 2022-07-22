@@ -12,7 +12,6 @@ import Shop from './Component/UserShop/Shop';
 import Message from './Component/Message/Message';
 
 function App() {
-  
   const [user, setUser] = useState("");
   useEffect(() => {
     setUser(getCurrentUser());
