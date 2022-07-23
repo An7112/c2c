@@ -134,6 +134,12 @@
 
 }
 
+.shop_content .All_Product {
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+}
+
 .Product_Created h5 {
     top: 0;
     font-size: 20px;
@@ -146,6 +152,14 @@
     align-items: center;
     width: 80%;
     height: 100%;
+}
+
+.form .MuiPaper-root .MuiButtonBase-root .Box_Ava {
+    margin-left: 7rem;
+}
+
+.form .MuiPaper-root .MuiCardActions-root {
+    margin-top: 0;
 }
 
 .form .form-control {
@@ -203,16 +217,20 @@
     border: none;
     background-color: #edf2f7;
 }
-.form-group .input_text:focus{
+
+.form-group .input_text:focus {
     outline: none;
 }
-.form .MuiPaper-root{
+
+.form .MuiPaper-root {
     height: 100%;
     width: 30%;
 }
-.MuiCardContent-root p{
+
+.MuiCardContent-root p {
     word-wrap: break-word;
 }
+
 @media screen and (max-width:700px) {
 
     .shop_content {
@@ -227,43 +245,57 @@
         width: 90%;
         height: 80px;
     }
-    .shop_content .header_link_shop{
+
+    .shop_content .header_link_shop {
         width: 100%;
         height: 40px;
     }
-    .header_link_shop .walk{
+
+    .header_link_shop .walk {
         width: 24%;
         font-size: 6px;
     }
-    .walk h5{
+
+    .walk h5 {
         font-size: 6px;
     }
-    .shop_content .Product_Created{
+
+    .shop_content .Product_Created {
         width: 100%;
     }
-    .Product_Created h5{
+
+    .Product_Created h5 {
         padding: 1rem 0;
         font-size: 10px;
     }
-    .Product_Created .form{
+
+    .Product_Created .form {
         width: 100%;
     }
-    .form-group .btn{
+
+    .form-group .btn {
         width: 50%;
         font-size: 10px;
     }
-    .form .MuiPaper-root{
+
+    .form .MuiPaper-root {
         width: 50%;
     }
-    .MuiTypography-root{
+
+    .MuiTypography-root {
         font-size: 12px;
     }
-    .form .form-control{
+
+    .form .form-control {
         width: 50%;
     }
-    .MuiButtonBase-root .Box_Ava{
+    .form .MuiPaper-root .MuiButtonBase-root .Box_Ava {
         margin-left: 3.5rem;
     }
+    .MuiButtonBase-root .Box_Ava {
+        margin-left: 3.5rem;
+    }
+
     .shop_content .box_seller {
         width: 98%;
     }

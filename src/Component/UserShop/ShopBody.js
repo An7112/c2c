@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import HeaderMain from '../Header'
+import AllProduct from './AllProduct'
 import CreateProduct from './CreateProduct'
 import './Shop.css'
 export class ShopBody extends Component {
@@ -77,7 +78,6 @@ export class ShopBody extends Component {
             <div className='walk'onClick={() => this.setState({header_link:'Create_Item'})}>
               <h5>Create Item</h5>
             </div>
-            <div className='all_product'></div>
           </div>
           {this.state.header_link === "Create_Item" && (
             <div className='Product_Created'>
@@ -85,7 +85,11 @@ export class ShopBody extends Component {
               <CreateProduct/>
             </div>
           )}
-          
+          {this.state.header_link === "ALL_PRODUCTS" && (
+            <div className='All_Product'>
+              <AllProduct/>
+            </div>
+          )}
         </div>
       </div>
     )
