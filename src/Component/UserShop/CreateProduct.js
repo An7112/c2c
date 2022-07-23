@@ -2,13 +2,20 @@ import React, { Component, useEffect, useState } from 'react'
 import axios from 'axios'
 import { getCurrentUser } from '../Auth/Services/AuthService'
 import MessageLogin from '../MessageLogin'
+import './Shop.css'
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import Pet from '../../Image/pet8.png';
 function withRouter(Component) {
     function ComponentWithRouter(props) {
         const [user, setUser] = useState('')
         useEffect(() => {
             setUser(getCurrentUser())
         }, [])
-        return <Component {...props} user={user} idUser={user._id}/>
+        return <Component {...props} user={user} idUser={user._id} />
     }
     return ComponentWithRouter
 }
@@ -19,7 +26,7 @@ class CreateProduct extends Component {
             ProductName: "",
             ProductTitle: "",
             ProductDetail: "",
-            IMG:""
+            IMG: ""
         }
 
         this.onSubmit = this.onSubmit.bind(this)
@@ -66,27 +73,51 @@ class CreateProduct extends Component {
     }
     render() {
         return (
-            <div>
-                {this.props.user &&(
-                    <form onSubmit={this.onSubmit}>
-                        <div className="form-group">
-                            <label>Choose a photo for the product</label>
-                            <input type='file' onChange={this.onFileChange}/>
+            <div className='form'>
+                <Card >
+                    <CardActionArea>
+                        <CardMedia
+                            component="img"
+                            height="140"
+                            image={this.state.IMG}
+                            alt="green iguana"
+                        />
+                        <div className='Box_Ava'>
+                            <img src={Pet} alt=""></img>
                         </div>
-                        <div>
-                            <img src={this.state.IMG} alt=""/>
+                        <CardContent>
+                            <Typography gutterBottom variant="h5" component="div" color="white">
+                                {this.state.ProductName}
+                            </Typography>
+                            <Typography variant="body2" color="white">
+                                {this.state.ProductTitle}
+                            </Typography>
+                        </CardContent>
+                    </CardActionArea>
+                    <CardActions>
+                        <Button size="small" color="primary">
+                            Buy now
+                        </Button>
+                    </CardActions>
+                </Card>
+                {this.props.user && (
+                    <form onSubmit={this.onSubmit} className='form-control'>
+                        <div className="form-group">
+                            <label class="file-input__label" for="file-input">
+                                <i class='bx bx-cloud-upload'></i>
+                                <span>Upload file</span></label>
+                            <input type='file' onChange={this.onFileChange} name="file-input"
+                                id="file-input"
+                                className="file-input__input" />
                         </div>
                         <div className="form-group">
-                            <label>Choose a name for the product</label>
-                            <input value={this.state.ProductName} onChange={this.onProductName}/>
+                            <input value={this.state.ProductName} onChange={this.onProductName} className='input_text' placeholder='Choose a name for the product' />
                         </div>
                         <div className="form-group">
-                            <label>Choose a title for the product</label>
-                            <input value={this.state.ProductTitle} onChange={this.onProductTitle}/>
+                            <input value={this.state.ProductTitle} onChange={this.onProductTitle} className='input_text' placeholder='Choose a title for the product' />
                         </div>
                         <div className="form-group">
-                            <label>Choose a detail for the product</label>
-                            <input value={this.state.ProductDetail} onChange={this.onProductDetail}/>
+                            <input value={this.state.ProductDetail} onChange={this.onProductDetail} className='input_text' placeholder='Choose a detail for the product' />
                         </div>
                         <div className="form-group">
                             <input type="submit" value="Register Product" className="btn btn-primary" />
@@ -94,7 +125,7 @@ class CreateProduct extends Component {
                     </form>
                 )}
                 {!this.props.user && (
-                    <MessageLogin/>
+                    <MessageLogin />
                 )}
             </div>
         )

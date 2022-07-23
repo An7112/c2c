@@ -74,8 +74,18 @@ export class ShopBody extends Component {
             <div className='walk'onClick={() => this.setState({header_link:'T_Shirt'})}>
               <h5>T-Shirt</h5>
             </div>
+            <div className='walk'onClick={() => this.setState({header_link:'Create_Item'})}>
+              <h5>Create Item</h5>
+            </div>
             <div className='all_product'></div>
           </div>
+          {this.state.header_link === "Create_Item" && (
+            <div className='Product_Created'>
+              <h5>Create your item</h5>
+              <CreateProduct/>
+            </div>
+          )}
+          
         </div>
       </div>
     )

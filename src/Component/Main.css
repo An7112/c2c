@@ -283,7 +283,7 @@
   overflow: hidden;
   display: flex;
   width: 1800px;
-  height: 1100px;
+  /* height: 1100px; */
   align-items: center;
   flex-direction: column;
   margin: 0 auto;

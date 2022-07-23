@@ -2,7 +2,6 @@
     overflow: hidden;
     display: flex;
     width: 1800px;
-    height: 1100px;
     align-items: center;
     flex-direction: column;
     margin: 0 auto;
@@ -98,14 +97,16 @@
     border-radius: 8px;
     border: 1px solid black;
 }
-.header_link_shop{
+
+.header_link_shop {
     display: flex;
     flex-direction: row;
     margin-top: 1rem;
     width: 70%;
     height: 50px;
 }
-.header_link_shop .walk{
+
+.header_link_shop .walk {
     cursor: pointer;
     width: 20%;
     height: 100%;
@@ -113,12 +114,104 @@
     align-items: center;
     justify-content: center;
 }
-.header_link_shop .walk:hover{
+
+.header_link_shop .walk:hover {
     border-bottom: 2px solid gray;
 }
-.walk h5{
+
+.walk h5 {
     color: black;
     font-size: 15px;
+}
+
+.shop_content .Product_Created {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    /* justify-content: center; */
+    width: 70%;
+
+}
+
+.Product_Created h5 {
+    top: 0;
+    font-size: 20px;
+    color: #000000;
+}
+
+.Product_Created .form {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 80%;
+    height: 100%;
+}
+
+.form .form-control {
+    display: flex;
+    flex-direction: column;
+    width: 60%;
+    height: 100%;
+
+}
+
+.form .form-control .form-group {
+    margin: 1rem 0;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.form-group .btn {
+    width: 20%;
+}
+
+.file-input__input {
+    width: 0.1px;
+    height: 0.1px;
+    opacity: 0;
+    overflow: hidden;
+    position: absolute;
+    z-index: -1;
+}
+
+.file-input__label {
+    cursor: pointer;
+    display: inline-flex;
+    align-items: center;
+    border-radius: 4px;
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    font-size: 14px;
+    padding: 10px 12px;
+    background-color: #0B3329;
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.file-input__label i {
+    font-size: 16px;
+    padding-right: 4px;
+}
+
+.form-group .input_text {
+    width: 80%;
+    height: 40px;
+    border-radius: 6px;
+    border: none;
+    background-color: #edf2f7;
+}
+.form-group .input_text:focus{
+    outline: none;
+}
+.form .MuiPaper-root{
+    height: 100%;
+    width: 30%;
+}
+.MuiCardContent-root p{
+    word-wrap: break-word;
 }
 @media screen and (max-width:700px) {
 
@@ -128,30 +221,74 @@
         margin: 0;
         flex-direction: column;
     }
-    .shop_content .box_seller{
+
+    .shop_content .box_seller {
         display: flex;
         width: 90%;
         height: 80px;
     }
-    .shop_content .box_seller{
+    .shop_content .header_link_shop{
+        width: 100%;
+        height: 40px;
+    }
+    .header_link_shop .walk{
+        width: 24%;
+        font-size: 6px;
+    }
+    .walk h5{
+        font-size: 6px;
+    }
+    .shop_content .Product_Created{
+        width: 100%;
+    }
+    .Product_Created h5{
+        padding: 1rem 0;
+        font-size: 10px;
+    }
+    .Product_Created .form{
+        width: 100%;
+    }
+    .form-group .btn{
+        width: 50%;
+        font-size: 10px;
+    }
+    .form .MuiPaper-root{
+        width: 50%;
+    }
+    .MuiTypography-root{
+        font-size: 12px;
+    }
+    .form .form-control{
+        width: 50%;
+    }
+    .MuiButtonBase-root .Box_Ava{
+        margin-left: 3.5rem;
+    }
+    .shop_content .box_seller {
         width: 98%;
     }
-    .box_seller .box_like{
+
+    .box_seller .box_like {
         width: calc(96% / 3);
         height: 100%;
     }
-    .child_box_like i, h5{
+
+    .child_box_like i,
+    h5 {
         padding: 0;
         font-size: 5px;
     }
-    .box_user_sell .ava_shop_on{
+
+    .box_user_sell .ava_shop_on {
         height: 48%;
         font-size: 5px;
     }
-    .ava_shop_on .name_on_shop h5{
+
+    .ava_shop_on .name_on_shop h5 {
         padding: 0;
     }
-    .box_user_sell .follow_chat{
+
+    .box_user_sell .follow_chat {
         margin-top: 5%;
         font-size: 6px;
     }
