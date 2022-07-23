@@ -7,10 +7,13 @@ export class ShopBody extends Component {
   constructor(props) {
     super(props)
     this.state = {
-      header_link:'Walk'
+      header_link:'walt'
     }
   }
+
   render() {
+    const header='';
+    console.log(header)
     return (
       <div className="home_content">
         <HeaderMain />
@@ -65,9 +68,8 @@ export class ShopBody extends Component {
             </div>
           </div>
           <div className='header_link_shop'>
-            <div className='walk' onClick={() => this.setState({header_link:'walk'})}>
+            <div className='walk' onClick={() => this.setState(header='walk')}>
               <h5>Walk</h5>
-              {/* <CreateProduct/> */}
             </div>
             <div className='walk' onClick={() => this.setState({header_link:'ALL_PRODUCTS'})}>
               <h5>ALL PRODUCTS</h5>
