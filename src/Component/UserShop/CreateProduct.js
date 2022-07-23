@@ -108,7 +108,7 @@ class CreateProduct extends Component {
                                 <span>Upload file</span></label>
                             <input type='file' onChange={this.onFileChange} name="file-input"
                                 id="file-input"
-                                className="file-input__input" />
+                                className="file-input__input" required={true}/>
                         </div>
                         <div className="form-group">
                             <input value={this.state.ProductName} onChange={this.onProductName} className='input_text' placeholder='Choose a name for the product' />

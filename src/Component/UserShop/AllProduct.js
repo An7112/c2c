@@ -15,22 +15,19 @@ export class AllProduct extends Component {
             SellerPr: []
         }
     }
-    deleteRow(_id){
-        axios.delete(`http://localhost:9000/api/seller/${_id}`)
-          .then(res => {
-            console.log(res.data);
-          })
-         this.state.SellerPr =  axios.get('http://localhost:9000/api/seller').then((res) => {
-            console.log(res.data);
-            this.setState({ SellerPr: res.data })
-        })
-     }  
+   
     componentDidMount() {
         axios.get('http://localhost:9000/api/seller').then((res) => {
             console.log(res.data);
             this.setState({ SellerPr: res.data })
         })
     }
+     deleteRow(_id){
+        axios.delete(`http://localhost:9000/api/seller/${_id}`)
+          .then(res => {
+            console.log(res.data);
+          })
+     }
     render() {
         const SellerPrById = this.state.SellerPr.filter((element) => {
             return element.IdSeller == this.state.user._id
