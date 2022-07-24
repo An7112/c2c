@@ -106,19 +106,27 @@
     height: 50px;
 }
 
-.header_link_shop .walk {
+.header_link_shop .link {
     cursor: pointer;
     width: 20%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
+    text-decoration: none;
+    color: black;
 }
-
-.header_link_shop .walk:hover {
-    border-bottom: 2px solid gray;
+.header_link_shop .link:hover{
+    background-color: #edf2f7;
 }
-
+.link .activeShop{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    border-bottom: 1px solid black;
+}
 .walk h5 {
     color: black;
     font-size: 15px;

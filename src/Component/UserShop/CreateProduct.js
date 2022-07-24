@@ -9,16 +9,10 @@ import CardMedia from '@mui/material/CardMedia';
 import Typography from '@mui/material/Typography';
 import { Button, CardActionArea, CardActions } from '@mui/material';
 import Pet from '../../Image/pet8.png';
-function withRouter(Component) {
-    function ComponentWithRouter(props) {
-        const [user, setUser] = useState('')
-        useEffect(() => {
-            setUser(getCurrentUser())
-        }, [])
-        return <Component {...props} user={user} idUser={user._id} />
-    }
-    return ComponentWithRouter
-}
+import MainMenu from '../Main'
+import HeaderMain from '../Header'
+import BoxSeller from './BoxSeller'
+import HeaderLinkShop from './HeaderLinkShop'
 class CreateProduct extends Component {
     constructor(props) {
         super(props)
@@ -26,7 +20,8 @@ class CreateProduct extends Component {
             ProductName: "",
             ProductTitle: "",
             ProductDetail: "",
-            IMG: ""
+            IMG: "",
+            user: getCurrentUser()
         }
 
         this.onSubmit = this.onSubmit.bind(this)
@@ -60,7 +55,7 @@ class CreateProduct extends Component {
         e.preventDefault()
         const CreatePr = new FormData()
         CreatePr.append('ProductImg', this.state.ProductImg)
-        CreatePr.append('IdSeller', this.props.user._id)
+        CreatePr.append('IdSeller', this.state.user._id)
         CreatePr.append('ProductName', this.state.ProductName)
         CreatePr.append('ProductTitle', this.state.ProductTitle)
         CreatePr.append('ProductDetail', this.state.ProductDetail)
@@ -73,63 +68,75 @@ class CreateProduct extends Component {
     }
     render() {
         return (
-            <div className='form'>
-                <Card >
-                    <CardActionArea>
-                        <CardMedia
-                            component="img"
-                            height="140"
-                            image={this.state.IMG}
-                            alt="green iguana"
-                        />
-                        <div className='Box_Ava'>
-                            <img src={Pet} alt=""></img>
+            <div>
+                <MainMenu />
+                <div className="home_content">
+                    <HeaderMain />
+                    <div className='shop_content'>
+                        <BoxSeller />
+                        <HeaderLinkShop />
+                        <div className='Product_Created'>
+                            <div className='form'>
+                                <Card >
+                                    <CardActionArea>
+                                        <CardMedia
+                                            component="img"
+                                            height="140"
+                                            image={this.state.IMG}
+                                            alt="green iguana"
+                                        />
+                                        <div className='Box_Ava'>
+                                            <img src={Pet} alt=""></img>
+                                        </div>
+                                        <CardContent>
+                                            <Typography gutterBottom variant="h5" component="div" color="white">
+                                                {this.state.ProductName}
+                                            </Typography>
+                                            <Typography variant="body2" color="white">
+                                                {this.state.ProductTitle}
+                                            </Typography>
+                                        </CardContent>
+                                    </CardActionArea>
+                                    <CardActions>
+                                        <Button size="small" color="primary">
+                                            Buy now
+                                        </Button>
+                                    </CardActions>
+                                </Card>
+                                {this.state.user && (
+                                    <form onSubmit={this.onSubmit} className='form-control'>
+                                        <div className="form-group">
+                                            <label class="file-input__label" for="file-input">
+                                                <i class='bx bx-cloud-upload'></i>
+                                                <span>Upload file</span></label>
+                                            <input type='file' onChange={this.onFileChange} name="file-input"
+                                                id="file-input"
+                                                className="file-input__input" required={true} />
+                                        </div>
+                                        <div className="form-group">
+                                            <input value={this.state.ProductName} onChange={this.onProductName} className='input_text' placeholder='Choose a name for the product' />
+                                        </div>
+                                        <div className="form-group">
+                                            <input value={this.state.ProductTitle} onChange={this.onProductTitle} className='input_text' placeholder='Choose a title for the product' />
+                                        </div>
+                                        <div className="form-group">
+                                            <input value={this.state.ProductDetail} onChange={this.onProductDetail} className='input_text' placeholder='Choose a detail for the product' />
+                                        </div>
+                                        <div className="form-group">
+                                            <input type="submit" value="Register Product" className="btn btn-primary" />
+                                        </div>
+                                    </form>
+                                )}
+                                {!this.state.user && (
+                                    <MessageLogin />
+                                )}
+                            </div>
                         </div>
-                        <CardContent>
-                            <Typography gutterBottom variant="h5" component="div" color="white">
-                                {this.state.ProductName}
-                            </Typography>
-                            <Typography variant="body2" color="white">
-                                {this.state.ProductTitle}
-                            </Typography>
-                        </CardContent>
-                    </CardActionArea>
-                    <CardActions>
-                        <Button size="small" color="primary">
-                            Buy now
-                        </Button>
-                    </CardActions>
-                </Card>
-                {this.props.user && (
-                    <form onSubmit={this.onSubmit} className='form-control'>
-                        <div className="form-group">
-                            <label class="file-input__label" for="file-input">
-                                <i class='bx bx-cloud-upload'></i>
-                                <span>Upload file</span></label>
-                            <input type='file' onChange={this.onFileChange} name="file-input"
-                                id="file-input"
-                                className="file-input__input" required={true}/>
-                        </div>
-                        <div className="form-group">
-                            <input value={this.state.ProductName} onChange={this.onProductName} className='input_text' placeholder='Choose a name for the product' />
-                        </div>
-                        <div className="form-group">
-                            <input value={this.state.ProductTitle} onChange={this.onProductTitle} className='input_text' placeholder='Choose a title for the product' />
-                        </div>
-                        <div className="form-group">
-                            <input value={this.state.ProductDetail} onChange={this.onProductDetail} className='input_text' placeholder='Choose a detail for the product' />
-                        </div>
-                        <div className="form-group">
-                            <input type="submit" value="Register Product" className="btn btn-primary" />
-                        </div>
-                    </form>
-                )}
-                {!this.props.user && (
-                    <MessageLogin />
-                )}
+                    </div>
+                </div>
             </div>
         )
     }
 }
 
-export default withRouter(CreateProduct)
+export default CreateProduct
