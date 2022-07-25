@@ -21,10 +21,14 @@ class CreateProduct extends Component {
             ProductTitle: "",
             ProductDetail: "",
             IMG: "",
-            user: getCurrentUser()
+            user: getCurrentUser(),
+            Collectibles: false,
+            Utility: false
         }
 
         this.onSubmit = this.onSubmit.bind(this)
+        this.onUtility = this.onUtility.bind(this)
+        this.onCollectibles = this.onCollectibles.bind(this)
         this.onProductName = this.onProductName.bind(this)
         this.onProductTitle = this.onProductTitle.bind(this)
         this.onProductDetail = this.onProductDetail.bind(this)
@@ -51,10 +55,24 @@ class CreateProduct extends Component {
             ProductDetail: e.target.value
         })
     }
+    onCollectibles(e) {
+        this.setState({
+            Collectibles: true,
+            Utility: false
+        })
+    }
+    onUtility(e) {
+        this.setState({
+            Utility: true,
+            Collectibles: false
+        })
+    }
     onSubmit(e) {
         e.preventDefault()
         const CreatePr = new FormData()
         CreatePr.append('ProductImg', this.state.ProductImg)
+        CreatePr.append('Collectibles', this.state.Collectibles)
+        CreatePr.append('Utility', this.state.Utility)
         CreatePr.append('IdSeller', this.state.user._id)
         CreatePr.append('ProductName', this.state.ProductName)
         CreatePr.append('ProductTitle', this.state.ProductTitle)
@@ -63,10 +81,13 @@ class CreateProduct extends Component {
         this.setState({
             ProductName: "",
             ProductTitle: "",
-            ProductDetail: ""
+            ProductDetail: "",
+            Collectibles: false,
+            Utility: false
         })
     }
     render() {
+        console.log(this.state.Collectibles)
         return (
             <div>
                 <MainMenu />
@@ -77,7 +98,7 @@ class CreateProduct extends Component {
                         <HeaderLinkShop />
                         <div className='Product_Created'>
                             <div className='form'>
-                                <Card >
+                                <Card className={this.state.Collectibles === true ? 'border' : ''}>
                                     <CardActionArea>
                                         <CardMedia
                                             component="img"
@@ -121,6 +142,14 @@ class CreateProduct extends Component {
                                         </div>
                                         <div className="form-group">
                                             <input value={this.state.ProductDetail} onChange={this.onProductDetail} className='input_text' placeholder='Choose a detail for the product' />
+                                        </div>
+                                        <div className="form-group">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={this.onCollectibles} />
+                                            <label>Collectibles</label>
+                                        </div>
+                                        <div className="form-group">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={this.onUtility} />
+                                            <label>Utility</label>
                                         </div>
                                         <div className="form-group">
                                             <input type="submit" value="Register Product" className="btn btn-primary" />

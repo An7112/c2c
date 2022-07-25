@@ -168,10 +168,10 @@
     height: 100%;
 }
 
-.form .MuiPaper-root .MuiButtonBase-root .Box_Ava {
-    margin-left: 7rem;
-}
 
+.border{
+    border: 2px solid rgb(85, 223, 154);
+}
 .form .MuiPaper-root .MuiCardActions-root {
     margin-top: 0;
 }

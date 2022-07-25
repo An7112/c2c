@@ -2,9 +2,9 @@ import React, { useState, useEffect } from 'react'
 import '../Main.css'
 import './Order.css'
 import axios from 'axios'
-import Art from './Art';
+import Collectibles from './Collectibles';
 import { getCurrentUser } from '../Auth/Services/AuthService'
-import Coll from './Coll';
+import Utility from './Utility';
 import Banner from '../../Image/banner.jpg'
 import Banner2 from '../../Image/banner2.jpg'
 
@@ -33,7 +33,7 @@ const OrderBody = () => {
     return element.avatar
   })
   console.log(filter[0])
-  const [ClickBut, SetClickBut] = useState("Art")
+  const [ClickBut, SetClickBut] = useState("Collectibles")
   console.log("ClickBut" + ClickBut)
   const [StateBan, setStateBan] = useState(false)
   setTimeout(() => {
@@ -56,12 +56,12 @@ const OrderBody = () => {
         </div>
         <div className='Order'>
           <div className='OrderSelect'>
-            <li onClick={() =>
+            {/* <li onClick={() =>
               SetClickBut("Art")
             } className={ClickBut === "Art" ? "Art" : "Ar"}>
               <i class='bx bxl-react'></i>
               <span className="links_name">Art</span>
-            </li>
+            </li> */}
             <li onClick={() => SetClickBut("Collectibles")} className={ClickBut === "Collectibles" ? "Coll" : "Col"}>
               <i class='bx bxl-react' ></i>
               <span className="links_name">Collectibles</span>
@@ -72,8 +72,8 @@ const OrderBody = () => {
             </li>
           </div>
           <div className='OrderNum'>
-            {ClickBut === "Art" && <Art />}
-            {ClickBut === "Collectibles" && <Coll />}
+            {ClickBut === "Collectibles" && <Collectibles/>}
+            {ClickBut === "Utility" && <Utility />}
           </div>
         </div>
       </div>

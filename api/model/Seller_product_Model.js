@@ -17,6 +17,12 @@ const SellerPSchema = mongoose.Schema({
     },
     ProductDetail:{
         type: String
+    },
+    Collectibles:{
+        type: Boolean
+    },
+    Utility:{
+        type: Boolean
     }
 },{
     collection:'ProductSeller'

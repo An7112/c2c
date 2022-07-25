@@ -15,6 +15,8 @@ exports.CreateProduct = async (req, res) => {
     const CrData = new SellerP({
         ProductImg:url+"/public/" + req.file.filename,
         IdSeller: req.body.IdSeller,
+        Collectibles: req.body.Collectibles,
+        Utility: req.body.Utility,
         ProductName:req.body.ProductName,
         ProductTitle:req.body.ProductTitle,
         ProductDetail: req.body.ProductDetail
@@ -26,6 +28,8 @@ exports.CreateProduct = async (req, res) => {
                 ProductCreated:{
                     ProductImg: result.ProductImg,
                     IdSeller: result.IdSeller,
+                    Collectibles: result.Collectibles,
+                    Utility: result.Utility,
                     ProductName: result.ProductName,
                     ProductTitle: result.ProductTitle,
                     ProductDetail: result.ProductDetail
@@ -69,6 +73,8 @@ exports.UpdateProduct = async (req, res) => {
     const UpdatePr = {
         ProductImg:url+"/public/" + req.file.filename,
         IdSeller: req.body.IdSeller,
+        Collectibles: req.body.Collectibles,
+        Utility: req.body.Utility,
         ProductName:req.body.ProductName,
         ProductTitle:req.body.ProductTitle,
         ProductDetail: req.body.ProductDetail

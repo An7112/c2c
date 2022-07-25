@@ -9,7 +9,7 @@ function HeaderLinkShop() {
         <div className='header_link_shop'>
             <Link className='link' to="/Your_shop/">
                 <div className={splitLocation[2] ==="" ? "activeShop" : ""}>
-                    <h5>Walk</h5>
+                    <h5>Collectibles</h5>
                 </div>
             </Link>
             <Link className='link' to="/Your_shop/ALL_PRODUCTS">
@@ -17,9 +17,9 @@ function HeaderLinkShop() {
                     <h5>ALL PRODUCTS</h5>
                 </div>
             </Link>
-            <Link className='link' to="/Your_shop/T_Shirt">
-                <div className={splitLocation[2] === "T_Shirt" ? "activeShop" : ""}>
-                    <h5>T-Shirt</h5>
+            <Link className='link' to="/Your_shop/Utility">
+                <div className={splitLocation[2] === "Utility" ? "activeShop" : ""}>
+                    <h5>Utility</h5>
                 </div>
             </Link>
             <Link className='link' to="/Your_shop/Create_Item">
