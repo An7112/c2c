@@ -141,7 +141,13 @@
     width: 70%;
 
 }
-
+.shop_content .Product_All {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-around;
+    width: 70%;
+}
 .shop_content .All_Product {
     align-items: center;
     justify-content: space-around;
@@ -271,12 +277,23 @@
     .shop_content .Product_Created {
         width: 100%;
     }
-
+    .shop_content .Product_All{
+        width: 100%;
+    }
     .Product_Created h5 {
         padding: 1rem 0;
         font-size: 10px;
     }
-
+    .Product_All h5{
+        padding: 1rem 0;
+        font-size: 10px;
+    }
+    .Product_All .row .column{
+        width: 50%;
+    }
+    .column .MuiPaper-root{
+        height: 120px;
+    }
     .Product_Created .form {
         width: 100%;
     }

@@ -42,7 +42,7 @@ export class AllProduct extends Component {
                     <div className='shop_content'>
                         <BoxSeller />
                         <HeaderLinkShop />
-                        <div className='Product_Created'>
+                        <div className='Product_All'>
                             <div class="row">
                                 {SellerPrById.map((element) => (
                                     <div class="column">
