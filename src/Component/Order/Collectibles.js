@@ -7,18 +7,26 @@ import { Button, CardActionArea, CardActions } from '@mui/material';
 import Pet from '../../Image/pet8.png';
 import axios from 'axios';
 import './Order.css'
-function Collectibles() {
+import { Link } from 'react-router-dom';
+function Collectibles(props) {
   const [ListArt, setListArt] = useState([])
 
   useEffect(() => {
     axios.get('http://localhost:9000/api/seller').then(res => setListArt(res.data))
   }, [])
-
-console.log(ListArt)
+  const Data = ListArt.filter((element) => {
+    if (props.SearchData === '') {
+      return element;
+    } else {
+      return element.ProductName.toLowerCase().includes(props.SearchData)
+    }
+  })
+  console.log(Data)
   return (
     <div>
       <div className="container">
-        {ListArt.map((element) => (
+        {Data.map((element) => (
+
           <Card key={element._id}>
             <CardActionArea>
               <CardMedia
@@ -40,39 +48,11 @@ console.log(ListArt)
               </CardContent>
             </CardActionArea>
             <CardActions>
-              <Button size="small" color="primary">
-                Buy now
-              </Button>
-            </CardActions>
-          </Card>
-        ))}
-      </div>
-      <div className="container">
-        {ListArt.map((element) => (
-          <Card>
-            <CardActionArea>
-              <CardMedia
-                component="img"
-                height="140"
-                image={element.ProductImg}
-                alt="green iguana"
-              />
-              <div className='Box_Ava'>
-                <img src={Pet} alt=""></img>
-              </div>
-              <CardContent>
-                <Typography gutterBottom variant="h5" component="div" color="white">
-                  {element.ProductName}
-                </Typography>
-                <Typography variant="body2" color="white">
-                  {element.ProductTitle}
-                </Typography>
-              </CardContent>
-            </CardActionArea>
-            <CardActions>
-              <Button size="small" color="primary">
-                Buy now
-              </Button>
+              <Link to={'/Payment/' + element._id}>
+                <Button size="small" color="primary">
+                  Buy now
+                </Button>
+              </Link>
             </CardActions>
           </Card>
         ))}

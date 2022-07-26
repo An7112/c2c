@@ -13,6 +13,7 @@ import AllProduct from './Component/UserShop/AllProduct';
 import CreateProduct from './Component/UserShop/CreateProduct';
 import Collectibles from './Component/UserShop/Collectibles';
 import Utility from './Component/UserShop/Utility';
+import Payment from './Component/Payment/Payment';
 
 function App() {
   const [user, setUser] = useState("");
@@ -25,11 +26,12 @@ function App() {
         <Route path='/' element={user ? <Home /> : <Login />}></Route>
         <Route path='/User' element={<User />} ></Route>
         <Route path='/Messages' element={<Message />}></Route>
-        <Route path='/Your_shop' element={<Collectibles />}></Route>
+        <Route path='/Your_shop/' element={<Collectibles />}></Route>
         <Route path='/Your_shop/ALL_PRODUCTS' element={<AllProduct />}></Route>
         <Route path='/Your_shop/Create_Item' element={<CreateProduct />}></Route>
         <Route path='/Your_shop/Utility' element={<Utility />}></Route>
         <Route path='/Order' element={<Order />}></Route>
+        <Route path='/Payment/:_id' element={<Payment/>}></Route>
         <Route path='/Saved'></Route>
         <Route path='/Setting'></Route>
         <Route path=":coinId" />

@@ -8,7 +8,7 @@ function HeaderLinkShop() {
     return (
         <div className='header_link_shop'>
             <Link className='link' to="/Your_shop/">
-                <div className={splitLocation[2] ==="" ? "activeShop" : ""}>
+                <div className={splitLocation[2] === "" ? "activeShop" : ""}>
                     <h5>Collectibles</h5>
                 </div>
             </Link>

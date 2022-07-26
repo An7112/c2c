@@ -13,13 +13,11 @@ const OrderBody = () => {
   useEffect(() => {
     setUser(getCurrentUser());
   }, []);
-  console.log(user)
   const [Data, setData] = useState([]);
   useEffect(() => {
     axios
       .get("http://localhost:9000/api/data")
       .then((response) => {
-        console.log(response.data)
         setData(response.data)
       })
       .catch(function (error) {
@@ -32,36 +30,29 @@ const OrderBody = () => {
   const filter = filterid.map((element) => {
     return element.avatar
   })
-  console.log(filter[0])
   const [ClickBut, SetClickBut] = useState("Collectibles")
-  console.log("ClickBut" + ClickBut)
   const [StateBan, setStateBan] = useState(false)
   setTimeout(() => {
     setStateBan(!StateBan);
   }, 5000)
+  const [filSearch, setfilSearch] = useState("")
+  const [btn, setBtn] = useState(false)
+  console.log(btn.btn)
   return (
     <div className='Oder_Content'>
       <div className='Detail_Order'>
         <div className='Explore_BoxUser'>
           <div className='Explore'>
             <img src={StateBan == true ? Banner : Banner2} alt=""></img>
-            {/* <img src={Banner2} alt=""></img> */}
           </div>
           <div className='BoxUser'>
             <div className='boxed-child'>
               <img src={filter[0]} alt=""></img>
             </div>
-
           </div>
         </div>
         <div className='Order'>
           <div className='OrderSelect'>
-            {/* <li onClick={() =>
-              SetClickBut("Art")
-            } className={ClickBut === "Art" ? "Art" : "Ar"}>
-              <i class='bx bxl-react'></i>
-              <span className="links_name">Art</span>
-            </li> */}
             <li onClick={() => SetClickBut("Collectibles")} className={ClickBut === "Collectibles" ? "Coll" : "Col"}>
               <i class='bx bxl-react' ></i>
               <span className="links_name">Collectibles</span>
@@ -70,9 +61,17 @@ const OrderBody = () => {
               <i class='bx bxl-react' ></i>
               <span className="links_name">Utility</span>
             </li>
+            <div className='Search_box'>
+              <input className={btn === true ? "inputSearch active" : "inputSearch"} type='text' placeholder='Search ...' onChange={(e) => setfilSearch(
+                e.target.value
+              )} />
+              <i onClick={() => {
+                setBtn(!btn);
+              }} class='bx bx-search-alt'></i>
+            </div>
           </div>
           <div className='OrderNum'>
-            {ClickBut === "Collectibles" && <Collectibles/>}
+            {ClickBut === "Collectibles" && <Collectibles SearchData={filSearch} />}
             {ClickBut === "Utility" && <Utility />}
           </div>
         </div>

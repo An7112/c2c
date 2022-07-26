@@ -70,7 +70,7 @@ const MainMenu = () => {
             <span className="tooltip">Messages</span>
           </li>
         </Link>
-        <Link className="linktext" to="/Your_shop">
+        <Link className="linktext" to="/Your_shop/">
           <li className={splitLocation[1] === "Your_shop" ? "activeNav" : ""}>
             <a>
             <i class='bx bxs-wrench'></i>
