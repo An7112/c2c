@@ -57,6 +57,9 @@ export default function Utility() {
                                                     <Typography variant="body2" color="white">
                                                         {element.ProductTitle}
                                                     </Typography>
+                                                    <Typography variant="body2" color="white">
+                                                        {element.Price}
+                                                    </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                             <CardActions>

@@ -17,6 +17,7 @@ exports.CreateProduct = async (req, res) => {
         IdSeller: req.body.IdSeller,
         Collectibles: req.body.Collectibles,
         Utility: req.body.Utility,
+        Price: req.body.Price,
         ProductName:req.body.ProductName,
         ProductTitle:req.body.ProductTitle,
         ProductDetail: req.body.ProductDetail
@@ -30,6 +31,7 @@ exports.CreateProduct = async (req, res) => {
                     IdSeller: result.IdSeller,
                     Collectibles: result.Collectibles,
                     Utility: result.Utility,
+                    Price: result.Price,
                     ProductName: result.ProductName,
                     ProductTitle: result.ProductTitle,
                     ProductDetail: result.ProductDetail
@@ -75,6 +77,7 @@ exports.UpdateProduct = async (req, res) => {
         IdSeller: req.body.IdSeller,
         Collectibles: req.body.Collectibles,
         Utility: req.body.Utility,
+        Price: req.body.Price,
         ProductName:req.body.ProductName,
         ProductTitle:req.body.ProductTitle,
         ProductDetail: req.body.ProductDetail

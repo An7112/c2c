@@ -23,6 +23,9 @@ const SellerPSchema = mongoose.Schema({
     },
     Utility:{
         type: Boolean
+    },
+    Price:{
+        type: Number
     }
 },{
     collection:'ProductSeller'

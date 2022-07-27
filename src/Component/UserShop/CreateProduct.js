@@ -23,10 +23,12 @@ class CreateProduct extends Component {
             IMG: "",
             user: getCurrentUser(),
             Collectibles: false,
-            Utility: false
+            Utility: false,
+            Price: ""
         }
 
         this.onSubmit = this.onSubmit.bind(this)
+        this.onPrice = this.onPrice.bind(this)
         this.onUtility = this.onUtility.bind(this)
         this.onCollectibles = this.onCollectibles.bind(this)
         this.onProductName = this.onProductName.bind(this)
@@ -43,6 +45,11 @@ class CreateProduct extends Component {
     onProductName(e) {
         this.setState({
             ProductName: e.target.value
+        })
+    }
+    onPrice(e) {
+        this.setState({
+            Price: e.target.value
         })
     }
     onProductTitle(e) {
@@ -74,6 +81,7 @@ class CreateProduct extends Component {
         CreatePr.append('Collectibles', this.state.Collectibles)
         CreatePr.append('Utility', this.state.Utility)
         CreatePr.append('IdSeller', this.state.user._id)
+        CreatePr.append('Price', this.state.Price)
         CreatePr.append('ProductName', this.state.ProductName)
         CreatePr.append('ProductTitle', this.state.ProductTitle)
         CreatePr.append('ProductDetail', this.state.ProductDetail)
@@ -83,7 +91,8 @@ class CreateProduct extends Component {
             ProductTitle: "",
             ProductDetail: "",
             Collectibles: false,
-            Utility: false
+            Utility: false,
+            Price:""
         })
     }
     render() {
@@ -116,6 +125,9 @@ class CreateProduct extends Component {
                                             <Typography variant="body2" color="white">
                                                 {this.state.ProductTitle}
                                             </Typography>
+                                            <Typography variant="body2" color="white">
+                                                {this.state.Price}
+                                            </Typography>
                                         </CardContent>
                                     </CardActionArea>
                                     <CardActions>
@@ -142,6 +154,9 @@ class CreateProduct extends Component {
                                         </div>
                                         <div className="form-group">
                                             <input value={this.state.ProductDetail} onChange={this.onProductDetail} className='input_text' placeholder='Choose a detail for the product' />
+                                        </div>
+                                        <div className="form-group">
+                                            <input value={this.state.Price} onChange={this.onPrice} className='input_text' placeholder='Choose a price for the product' />
                                         </div>
                                         <div className="form-group">
                                             <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" onChange={this.onCollectibles} />

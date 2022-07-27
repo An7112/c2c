@@ -26,7 +26,6 @@ function Collectibles(props) {
     <div>
       <div className="container">
         {Data.map((element) => (
-
           <Card key={element._id}>
             <CardActionArea>
               <CardMedia
@@ -40,10 +39,10 @@ function Collectibles(props) {
               </div>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div" color="white">
-                  {element.ProductName}
+                  {element.ProductName}  
                 </Typography>
                 <Typography variant="body2" color="white">
-                  {element.ProductTitle}
+                {element.Price}$
                 </Typography>
               </CardContent>
             </CardActionArea>

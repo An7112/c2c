@@ -58,6 +58,9 @@ export default function Collectibles() {
                                                     <Typography variant="body2" color="white">
                                                         {element.ProductTitle}
                                                     </Typography>
+                                                    <Typography variant="body2" color="white">
+                                                        {element.Price}
+                                                    </Typography>
                                                 </CardContent>
                                             </CardActionArea>
                                             <CardActions>
