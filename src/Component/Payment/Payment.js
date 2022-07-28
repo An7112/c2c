@@ -6,8 +6,9 @@ import axios from 'axios'
 import { useParams } from "react-router-dom"
 import './Pay.css'
 import Countdown from "react-countdown";
+import buyerAva from '../../Image/pet8.png'
 import calculateCountdownFromNow from "./utils";
-const countdownDate = "2022-07-27 20:00";
+const countdownDate = "2022-07-28 22:00";
 function Payment() {
     const [DataPay, setDataPay] = useState([])
     const { _id } = useParams();
@@ -86,7 +87,52 @@ function Payment() {
                                 </div>
                             </div>
                         </div>
-                        <div className='box_comment'></div>
+                        <div className='box_comment'>
+                            <div className='header_review'>
+                               <h5>US PRODUCT REVIEW </h5>
+                                <i class='bx bx-pencil'></i>
+                            </div>
+                            <div className='box_review'>
+                                <div className='buyer_box'>
+                                    <div className='avatar_buyer'>
+                                        <img src={buyerAva} alt=""/>
+                                    </div>
+                                    <div className='name_buyer'>
+                                        <h5>nguyenthanhan</h5>
+                                    </div>
+                                </div>
+                                <div className='comment_box'>
+                                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                </div>
+                            </div>
+                            <div className='box_review'>
+                                <div className='buyer_box'>
+                                    <div className='avatar_buyer'>
+                                        <img src={buyerAva} alt=""/>
+                                    </div>
+                                    <div className='name_buyer'>
+                                        <h5>nguyenthanhan</h5>
+                                    </div>
+                                </div>
+                                <div className='comment_box'>
+                                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                </div>
+                            </div>
+                            <div className='box_review'>
+                                <div className='buyer_box'>
+                                    <div className='avatar_buyer'>
+                                        <img src={buyerAva} alt=""/>
+                                    </div>
+                                    <div className='name_buyer'>
+                                        <h5>nguyenthanhan</h5>
+                                    </div>
+                                </div>
+                                <div className='comment_box'>
+                                    <p>aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa</p>
+                                </div>
+                            </div>
+                            
+                        </div>
                     </div>
                 </div>
             </div>

@@ -1,9 +1,10 @@
-import React, {Component } from "react";
+import React, { Component } from "react";
 import "../Main.css";
 import "./Home.css";
 import axios from "axios";
 import ReactPaginate from "react-paginate";
-
+import Banner from '../../Image/banner.jpg'
+import Banner2 from '../../Image/banner2.jpg'
 class HomeBody extends Component {
   constructor(props) {
     super(props);
@@ -15,6 +16,7 @@ class HomeBody extends Component {
       getId: "",
       postData: [],
       tokenbyid: [],
+      StateBan: false
       // data: []
     };
     this.handlePageClick = this.handlePageClick.bind(this);
@@ -119,8 +121,10 @@ class HomeBody extends Component {
   componentDidMount() {
     this.receivedData();
   }
+  componentDidUpdate() {
+    setTimeout(() => this.setState({ StateBan: !this.state.StateBan }), 3000)
+  }
   render() {
-  
     const idCoin = this.state.Coins.map((coin) => {
       return coin.id;
     });
@@ -137,6 +141,7 @@ class HomeBody extends Component {
       <div className="home_content_page">
 
         <div className="home_content_page_chart">
+          {isEqual == true ? <img className="posterhome" src={Banner} alt="" style={{ display: 'none' }} /> : <img className="posterhome" src={this.state.StateBan === true ? Banner : Banner2} alt="" />}
           {isEqual == true ? (
             <div className="detail_1">
               <div className="Rank_Name">
@@ -152,6 +157,7 @@ class HomeBody extends Component {
                 <h3>{this.state.tokenbyid.id}</h3>
                 <h3>#{this.state.tokenbyid.coingecko_rank}</h3>
               </div>
+
               <div className="Change_time">
                 <div className="Change_time_line">
                   <div className="Change_time_line_detail">
@@ -220,6 +226,7 @@ class HomeBody extends Component {
                   </div>
                 </div>
               </div>
+
               {/* <div className="Price">
               <h3>{this.state.tokenbyid.market_data?.current_price ? (
                 <h3>{this.state.tokenbyid.market_data.current_price.usd.toLocaleString()} <i class='bx bx-dollar' ></i></h3>
@@ -229,10 +236,10 @@ class HomeBody extends Component {
 
               </div>
             </div>
-
           ) : (
             null
           )}
+
         </div>
 
         <div className="home_content_page_list_token">
@@ -278,6 +285,7 @@ class HomeBody extends Component {
             <div className="React_Paginate_detail"></div>
           </div>
         </div>
+
       </div>
     );
   }

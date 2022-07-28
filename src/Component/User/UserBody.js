@@ -7,6 +7,7 @@ import UpdateUser from "./UpdateUser";
 import CreateUser from "./CreateUser";
 import moment from "moment";
 import ReactPaginate from "react-paginate";
+import {ethers} from 'ethers'
 function withRouter(Component) {
   function ComponentWithRouter(props) {
     const [user, setUser] = useState("");
@@ -42,37 +43,68 @@ class UserBody extends Component {
     this.state = {
       edit: false,
       data: null,
+      address:'',
+      Balance:null,
+      addressState:""
     }
+    this.onSubmit = this.onSubmit.bind(this)
   }
-  componentDidMount() {
-    const getData = () => {
-      const url = 'https://api.coindesk.com/v1/bpi/historical/close.json';
 
-      fetch(url).then(r => r.json())
-        .then((bitcoinData) => {
-          const sortedData = [];
-          let count = 0;
-          for (let date in bitcoinData.bpi) {
-            sortedData.push({
-              d: moment(date).format('MMM DD'),
-              p: bitcoinData.bpi[date].toLocaleString('us-EN', { style: 'currency', currency: 'USD' }),
-              x: count,
-              y: bitcoinData.bpi[date]
-            });
-            count++;
-          }
-          this.setState({
-            data: sortedData,
-            fetchingData: false
-          })
+  componentDidMount() {
+      if (window.ethereum) {
+        window.ethereum
+          .request({ method: "eth_requestAccounts" })
+          .then((res) => {accountChangeHandler(res[0]); this.setState({addressState: res[0]})});
+      }
+    const getbalance = (address) => {
+      window.ethereum
+        .request({ 
+          method: "eth_getBalance", 
+          params: [address, "latest"] 
         })
-        .catch((e) => {
-          console.log(e);
+        .then((balance) => {
+          this.setState({
+            Balance: ethers.utils.formatEther(balance),
+          });
         });
+    };
+    const accountChangeHandler = (account) => {
+      this.setState({
+        address: account,
+      });
+      getbalance(account);
+    };
+  }
+  onSubmit(){
+    if (window.ethereum) {
+      window.ethereum
+        .request({ method: "eth_requestAccounts" })
+        .then((res) => accountChangeHandler(res[0]));
+        
+    } else {
+      alert("install metamask extension!!");
     }
-    getData();
+  const getbalance = (address) => {
+    window.ethereum
+      .request({ 
+        method: "eth_getBalance", 
+        params: [address, "latest"] 
+      })
+      .then((balance) => {
+        this.setState({
+          Balance: ethers.utils.formatEther(balance),
+        });
+      });
+  };
+  const accountChangeHandler = (account) => {
+    this.setState({
+      address: account,
+    });
+    getbalance(account);
+  };
   }
   render() {
+    console.log(this.state.address)
     const UserID = this.props.filterid.map((userD) => (
       userD.userId
     ))
@@ -119,10 +151,12 @@ class UserBody extends Component {
             <div className="user_detail_earn">
               <div className="list_earn">
                 <div className="list_earn_child">
-                  <i class="bx bxs-credit-card"></i>
+                  {this.state.address === this.state.addressState ? <i class="bx bxs-credit-card" onClick={this.onSubmit} ></i> :  <i class="bx bxs-credit-card" onClick={this.onSubmit} style={{color:'red'}}></i>}
+                  <h5>{this.state.address}</h5>
                 </div>
                 <div className="list_earn_child">
                   <i class="bx bxs-wallet-alt"></i>
+                  <h5>{this.state.Balance} ETH</h5>
                 </div>
                 <div className="list_earn_child">
                   <i class="bx bxs-color"></i>
@@ -130,7 +164,6 @@ class UserBody extends Component {
               </div>
               <div className="purchase_box">
                 <div className="pay_history_header"><h3>Payment History</h3></div>
-
                 <div className="pay_history"></div>
               </div>
             </div>
@@ -174,6 +207,7 @@ class UserBody extends Component {
               <div className="list_earn">
                 <div className="list_earn_child">
                   <i class="bx bxs-credit-card"></i>
+                 
                 </div>
                 <div className="list_earn_child">
                   <i class="bx bxs-wallet-alt"></i>

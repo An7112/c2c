@@ -78,7 +78,7 @@
 
 .sidebar ul li .tooltip {
   position: absolute;
-  z-index: 9999;
+  z-index: 999;
   left: 122px;
   top: 50%;
   transform: translate(-50%, -50%);
@@ -289,6 +289,7 @@
 }
 
 .home_content .home_content_page .home_content_page_chart {
+  /* position: relative; */
   display: flex;
   width: 100%;
   border-radius: 12px;

@@ -15,7 +15,7 @@ import HeaderLinkShop from './HeaderLinkShop';
 export default function Collectibles() {
 
     const [Data, SetData] = useState([])
-   const deleteRow = (_id) => {
+    const deleteRow = (_id) => {
         axios.delete(`http://localhost:9000/api/seller/${_id}`)
         window.location.reload(false)
     }
@@ -24,58 +24,59 @@ export default function Collectibles() {
             console.log(res.data)
             SetData(res.data)
         })
-    },[])
+    }, [])
     const Collectible = Data.filter((element) => {
         return element.Collectibles === true
-      })
-  return (
-    <div>
-                <MainMenu />
-                <div className="home_content">
-                    <HeaderMain />
-                    <div className='shop_content'>
-                        <BoxSeller />
-                        <HeaderLinkShop />
-                        <div className='Product_All'>
-                            <div class="row">
-                                {Collectible.map((element) => (
-                                    <div class="column">
-                                        <Card className={element.Collectibles === true ? 'border' : ''}>
-                                            <CardActionArea>
-                                                <CardMedia
-                                                    component="img"
-                                                    height="140"
-                                                    image={element.ProductImg}
-                                                    alt="green iguana"
-                                                />
-                                                <div className='Box_Ava'>
-                                                    <img src={Pet} alt=""></img>
-                                                </div>
-                                                <CardContent>
-                                                    <Typography gutterBottom variant="h5" component="div" color="white">
-                                                        {element.ProductName}
-                                                    </Typography>
-                                                    <Typography variant="body2" color="white">
-                                                        {element.ProductTitle}
-                                                    </Typography>
-                                                    <Typography variant="body2" color="white">
-                                                        {element.Price}
-                                                    </Typography>
-                                                </CardContent>
-                                            </CardActionArea>
-                                            <CardActions>
-                                                <Button size="small" color="primary" onClick={() => deleteRow(element._id)}>
-                                                    Delete
-                                                </Button>
-                                            </CardActions>
-                                        </Card>
-                                    </div>
-                                ))}
+    })
+    return (
+        <div>
+            <MainMenu />
+            <div className="home_content">
+                <HeaderMain />
+                <div className='shop_content'>
+                    
+                    <BoxSeller />
+                    <HeaderLinkShop />
+                    <div className='Product_All'>
+                        <div class="row">
+                            {Collectible.map((element) => (
+                                <div class="column">
+                                    <Card className={element.Collectibles === true ? 'border' : ''}>
+                                        <CardActionArea>
+                                            <CardMedia
+                                                component="img"
+                                                height="140"
+                                                image={element.ProductImg}
+                                                alt="green iguana"
+                                            />
+                                            <div className='Box_Ava'>
+                                                <img src={Pet} alt=""></img>
+                                            </div>
+                                            <CardContent>
+                                                <Typography gutterBottom variant="h5" component="div" color="white">
+                                                    {element.ProductName}
+                                                </Typography>
+                                                <Typography variant="body2" color="white">
+                                                    {element.ProductTitle}
+                                                </Typography>
+                                                <Typography variant="body2" color="white">
+                                                    {element.Price}
+                                                </Typography>
+                                            </CardContent>
+                                        </CardActionArea>
+                                        <CardActions>
+                                            <Button size="small" color="primary" onClick={() => deleteRow(element._id)}>
+                                                Delete
+                                            </Button>
+                                        </CardActions>
+                                    </Card>
+                                </div>
+                            ))}
 
-                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-  )
+        </div>
+    )
 }

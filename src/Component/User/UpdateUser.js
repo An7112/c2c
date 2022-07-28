@@ -13,7 +13,6 @@ function withRouter(Component) {
     var GetUp = DataUp.filter(element => {
       return element.idUser === user._id
     })
-  
     var GetId = GetUp.map(element => {
       return element._id
     })

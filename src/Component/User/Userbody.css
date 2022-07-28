@@ -54,7 +54,12 @@
   border-radius: 50%;
   border: 10px solid white;
 }
-
+.Avatar img{
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  object-fit: cover;
+}
 .Avatar .avataruser {
   width: 100%;
   height: 100%;
@@ -157,14 +162,21 @@
 
 .list_earn .list_earn_child {
   display: flex;
+  flex-direction: column;
   width: calc(94% / 3);
   height: 90%;
   box-shadow: 0px 0px 5px #7e8492;
   border-radius: 14px;
   background-color: #000000;
 }
-
+.list_earn_child h5{
+  padding-left: 2rem;
+  width: 90%;
+  word-wrap: break-word;
+  color: white;
+}
 .list_earn_child i {
+  cursor: pointer;
   padding: 2rem 2rem;
   font-size: 30px;
   color: white;
@@ -300,7 +312,10 @@ h4 {
     width: calc(96% / 3);
     height: 100%;
   }
-
+  .list_earn .list_earn_child h5 {
+    padding: 5px;
+    font-size: 6px;
+  }
   .list_earn .list_earn_child i {
     padding: 5px;
     font-size: 15px;
