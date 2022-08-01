@@ -8,24 +8,34 @@ import Pet from '../../Image/pet8.png';
 import axios from 'axios';
 import './Order.css'
 import { Link } from 'react-router-dom';
+import { getCurrentUser } from '../Auth/Services/AuthService';
+import AllProduct from '../UserShop/AllProduct';
+import { useSelector } from "react-redux";
 function Collectibles(props) {
-  const [ListArt, setListArt] = useState([])
-
-  useEffect(() => {
-    axios.get('http://localhost:9000/api/seller').then(res => setListArt(res.data))
-  }, [])
-  const Data = ListArt.filter((element) => {
+  const products = useSelector((state) => state.allReducer.products);
+  const Collectibles = products.filter((element) => {
+    return element.Collectibles == true
+  })
+  const Data = Collectibles.filter((element) => {
     if (props.SearchData === '') {
       return element;
     } else {
       return element.ProductName.toLowerCase().includes(props.SearchData)
     }
   })
-  console.log(Data)
+  const [Cart, setCart] = useState([])
+  const AddCart = index => {
+    setCart(Cart.concat(Data[index]))
+
+  }
+
+  const senData = () => {
+    props.parentCallback(Cart)
+  }
   return (
     <div>
       <div className="container">
-        {Data.map((element) => (
+        {Data.map((element, index) => (
           <Card key={element._id}>
             <CardActionArea>
               <CardMedia
@@ -34,9 +44,11 @@ function Collectibles(props) {
                 image={element.ProductImg}
                 alt="green iguana"
               />
+              <Link to={'/Your_shop/'+ element.IdSeller}>
               <div className='Box_Ava'>
                 <img src={Pet} alt=""></img>
               </div>
+              </Link>
               <CardContent>
                 <Typography gutterBottom variant="h5" component="div" color="white">
                   {element.ProductName}  
@@ -52,6 +64,9 @@ function Collectibles(props) {
                   Buy now
                 </Button>
               </Link>
+                <Button size="small" color="primary" onClick={() => AddCart(index)} onChange={senData()}>
+                  Add to cart
+                </Button>
             </CardActions>
           </Card>
         ))}

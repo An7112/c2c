@@ -12,21 +12,33 @@ import HeaderMain from '../Header';
 import BoxSeller from './BoxSeller';
 import './Shop.css'
 import HeaderLinkShop from './HeaderLinkShop';
+import { useSelector,useDispatch } from 'react-redux';
+import { setProducts } from '../../redux/actions/productsActions';
 export default function Utility() {
-    const [Data, SetData] = useState([])
+    const products = useSelector((state) => state.allReducer.products);
+    const dispatch = useDispatch();
+    const fetchProducts = async () => {
+      const response = await axios
+        .get("http://localhost:9000/api/seller")
+        .catch((err) => {
+          console.log("Err: ", err);
+        });
+      dispatch(setProducts(response.data));
+    };
+    useEffect(() => {
+      fetchProducts();
+    }, []);
     const deleteRow = (_id) => {
         axios.delete(`http://localhost:9000/api/seller/${_id}`)
-        window.location.reload(false)
+        window.location.reload(true)
     }
-    useEffect(() => {
-        axios.get('http://localhost:9000/api/seller').then((res) => {
-            SetData(res.data)
-        })
+    const user = useSelector((state) => state.allReducer.user);
+    const SellerPrById = products.filter((element) => {
+        return element.IdSeller === user._id
     })
-    console.log(Data)
-    const Collectible = Data.filter((element) => {
+    const Collectible = SellerPrById.filter((element) => {
         return element.Collectibles === false
-      })
+    })
   return (
     <div>
                 <MainMenu />

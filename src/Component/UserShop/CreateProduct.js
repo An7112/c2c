@@ -24,7 +24,8 @@ class CreateProduct extends Component {
             user: getCurrentUser(),
             Collectibles: false,
             Utility: false,
-            Price: ""
+            Price: "",
+            Shop: []
         }
 
         this.onSubmit = this.onSubmit.bind(this)
@@ -35,6 +36,11 @@ class CreateProduct extends Component {
         this.onProductTitle = this.onProductTitle.bind(this)
         this.onProductDetail = this.onProductDetail.bind(this)
         this.onFileChange = this.onFileChange.bind(this);
+    }
+    componentDidMount() {
+        axios.get("http://localhost:9000/api/data").then((res) => this.setState({
+            Shop: res.data
+        }))
     }
     onFileChange(e) {
         this.setState({
@@ -92,11 +98,17 @@ class CreateProduct extends Component {
             ProductDetail: "",
             Collectibles: false,
             Utility: false,
-            Price:""
+            Price: ""
         })
     }
     render() {
-        console.log(this.state.Collectibles)
+        const datashop = this.state.Shop.filter(element => {
+            return element.idUser == this.state.user._id
+        })
+        const avatarShop = datashop.map(el => {
+            return el.avatar
+        })
+        console.log(avatarShop)
         return (
             <div>
                 <MainMenu />
@@ -116,7 +128,7 @@ class CreateProduct extends Component {
                                             alt="green iguana"
                                         />
                                         <div className='Box_Ava'>
-                                            <img src={Pet} alt=""></img>
+                                            <img src={avatarShop} alt=""></img>
                                         </div>
                                         <CardContent>
                                             <Typography gutterBottom variant="h5" component="div" color="white">

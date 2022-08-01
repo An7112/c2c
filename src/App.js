@@ -1,5 +1,4 @@
 
-import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Order from './Component/Order/Order';
 import Home from './Component/Home/Home';
@@ -14,12 +13,11 @@ import CreateProduct from './Component/UserShop/CreateProduct';
 import Collectibles from './Component/UserShop/Collectibles';
 import Utility from './Component/UserShop/Utility';
 import Payment from './Component/Payment/Payment';
+import React, { useEffect, useState } from "react";
+import { useSelector } from 'react-redux';
 
 function App() {
-  const [user, setUser] = useState("");
-  useEffect(() => {
-    setUser(getCurrentUser());
-  }, []);
+  const user = useSelector((state) => state.allReducer.user);
   return (
     <BrowserRouter>
       <Routes>

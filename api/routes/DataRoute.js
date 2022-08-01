@@ -5,6 +5,7 @@ const Auth = require('../controller/AuthController')
 const User = require('../controller/UserController')
 const Data = require('../controller/DataUserCtl')
 const auth = require('../middleware/auth')
+const Comments = require('../controller/CommentController')
 const SellerPr = require('../controller/ProductController')
 const {v4: uuidv4} = require('uuid')
 uuidv4();
@@ -54,4 +55,11 @@ router.get('/seller/:_id', SellerPr.GetProductById);
 router.post('/seller', upload.single('ProductImg'), SellerPr.CreateProduct);
 router.patch('/seller/:_id', upload.single('ProductImg'), SellerPr.UpdateProduct);
 router.delete('/seller/:_id', SellerPr.DeleteProduct);
+
+//Comment 
+router.get('/comments',Comments.GetComment);
+router.get('/comments/:_id', Comments.GetCommentById);
+router.post('/comments', Comments.CreateComment);
+router.patch('/comments/:_id', Comments.UpdateComment);
+router.delete('/comments/:_id', Comments.DeleteComment);
 module.exports = router;

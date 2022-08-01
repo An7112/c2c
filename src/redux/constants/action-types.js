@@ -1,0 +1,5 @@
+export const ActionTypes = {
+  SET_PRODUCTS: "SET_PRODUCTS",
+  SET_DATAUSER:"SET_DATAUSER",
+  SET_COMMENTS:"SET_COMMENTS"
+};

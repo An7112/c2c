@@ -7,7 +7,8 @@ import { getCurrentUser } from '../Auth/Services/AuthService'
 import Utility from './Utility';
 import Banner from '../../Image/banner.jpg'
 import Banner2 from '../../Image/banner2.jpg'
-
+import { useSelector, useDispatch } from 'react-redux';
+import { setProducts } from "../../redux/actions/productsActions";
 const OrderBody = () => {
   const [user, setUser] = useState("");
   useEffect(() => {
@@ -37,7 +38,24 @@ const OrderBody = () => {
   }, 5000)
   const [filSearch, setfilSearch] = useState("")
   const [btn, setBtn] = useState(false)
-  console.log(btn.btn)
+  const products = useSelector((state) => state.allReducer.products);
+  const dispatch = useDispatch();
+  const fetchProducts = async () => {
+    const response = await axios
+      .get("http://localhost:9000/api/seller")
+      .catch((err) => {
+        console.log("Err: ", err);
+      });
+    dispatch(setProducts(response.data));
+  };
+  useEffect(() => {
+    fetchProducts();
+  }, []);
+  const [Carts, setCarts] = useState([])
+  const callbackFunction = (childData) => {
+    setCarts(childData)
+  }
+  const [none, setNone] = useState("none")
   return (
     <div className='Oder_Content'>
       <div className='Detail_Order'>
@@ -61,6 +79,28 @@ const OrderBody = () => {
               <i class='bx bxl-react' ></i>
               <span className="links_name">Utility</span>
             </li>
+            <i class='bx bx-cart-alt' onClick={() => setNone("block")}></i>
+            <div id='overlay' style={{display: none}}>
+              <div id='cart__modal'>
+                <div className='cart'>
+                  <div className='cart__head'>
+                    <p className='cart__head-title'>Cart</p>
+                    <h5 className='close__btn' onClick={() => setNone("none")}>
+                      X
+                    </h5>
+                  </div>
+                  <div className='cart__list'>
+                    {Carts.map((element) => (
+                      <div className='item_cart' key={element._id}>
+                        <img src={element.ProductImg} alt=""/>
+                        <h5>{element.ProductName}</h5>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </div>
+            <h5>{Carts.length}</h5>
             <div className='Search_box'>
               <input className={btn === true ? "inputSearch active" : "inputSearch"} type='text' placeholder='Search ...' onChange={(e) => setfilSearch(
                 e.target.value
@@ -69,10 +109,11 @@ const OrderBody = () => {
                 setBtn(!btn);
               }} class='bx bx-search-alt'></i>
             </div>
+
           </div>
           <div className='OrderNum'>
-            {ClickBut === "Collectibles" && <Collectibles SearchData={filSearch} />}
-            {ClickBut === "Utility" && <Utility />}
+            {ClickBut === "Collectibles" && <Collectibles SearchData={filSearch} parentCallback={callbackFunction} />}
+            {ClickBut === "Utility" && <Utility SearchData={filSearch} />}
           </div>
         </div>
       </div>

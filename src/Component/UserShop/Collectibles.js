@@ -12,20 +12,31 @@ import HeaderMain from '../Header';
 import BoxSeller from './BoxSeller';
 import './Shop.css'
 import HeaderLinkShop from './HeaderLinkShop';
+import { useSelector,useDispatch } from 'react-redux';
+import { setProducts } from '../../redux/actions/productsActions';
 export default function Collectibles() {
-
-    const [Data, SetData] = useState([])
+    const products = useSelector((state) => state.allReducer.products);
+    const dispatch = useDispatch();
+    const fetchProducts = async () => {
+      const response = await axios
+        .get("http://localhost:9000/api/seller")
+        .catch((err) => {
+          console.log("Err: ", err);
+        });
+      dispatch(setProducts(response.data));
+    };
+    useEffect(() => {
+      fetchProducts();
+    }, []);
     const deleteRow = (_id) => {
         axios.delete(`http://localhost:9000/api/seller/${_id}`)
-        window.location.reload(false)
+        window.location.reload(true)
     }
-    useEffect(() => {
-        axios.get('http://localhost:9000/api/seller').then(res => {
-            console.log(res.data)
-            SetData(res.data)
-        })
-    }, [])
-    const Collectible = Data.filter((element) => {
+    const user = useSelector((state) => state.allReducer.user);
+    const SellerPrById = products.filter((element) => {
+        return element.IdSeller === user._id
+    })
+    const Collectible = SellerPrById.filter((element) => {
         return element.Collectibles === true
     })
     return (
@@ -34,7 +45,6 @@ export default function Collectibles() {
             <div className="home_content">
                 <HeaderMain />
                 <div className='shop_content'>
-                    
                     <BoxSeller />
                     <HeaderLinkShop />
                     <div className='Product_All'>

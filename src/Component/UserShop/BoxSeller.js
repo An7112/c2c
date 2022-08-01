@@ -55,7 +55,7 @@ function BoxSeller() {
                 <p>Online 2 minutes ago</p>
               </div>
             </div>
-            <div className='follow_chat'>
+            {/* <div className='follow_chat'>
               <div className='fc_box'>
                 <i class='bx bx-plus'></i>
                 <h5>FOLLOW</h5>
@@ -64,7 +64,7 @@ function BoxSeller() {
                 <i class='bx bx-chat' ></i>
                 <h5>CHAT</h5>
               </div>
-            </div>
+            </div> */}
           </div>
 
         </div>

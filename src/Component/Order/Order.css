@@ -41,8 +41,7 @@
      margin-top: 1rem;
  }
 
- .MuiPaper-root {
-     /* width: 250px; */
+ .container .MuiPaper-root {
      height: 360px;
      background-color: black;
      border-radius: 8px;
@@ -63,7 +62,7 @@
      transition: 0.3s ease-in-out;
  }
 
- .MuiButtonBase-root {
+.MuiPaper-root .MuiButtonBase-root {
      text-align: center;
      height: 50%;
      position: inherit;
@@ -308,11 +307,126 @@
 .MuiCardActions-root a {
     text-decoration: none;
 }
+ .MuiCardContent-root .css-10gsmdd-MuiTypography-root{
+    width: 97%;
+    overflow: hidden;
+    /* word-wrap: break-word; */
+
+}
+.OrderSelect #cart__modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    right: 0;
+    left: 0;
+    background: rgba(4, 4, 4, 0.5);
+    backdrop-filter: blur(10px);
+    z-index: 9999;
+    animation: show__overlay 0.5s linear;
+}
+#cart__modal .cart {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-start;
+    flex-direction: column;
+    width: 987px;
+    height: 446px;
+    background: #0e0e0e;
+    border: 2px solid #1c1c1c;
+    border-radius: 24px;
+    z-index: 99999;
+}
+
+.cart .cart__head {
+    width: 86%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 0 35px;
+}
+
+.cart__head-title {
+    font-family: 'Brinnan';
+
+    font-weight: 700;
+    font-size: 24px;
+    line-height: 29px;
+
+    color: #ffffff;
+}
+
+.close__btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 30px;
+    height: 30px;
+    border: 2px solid rgb(140, 137, 137);
+    border-radius: 500px;
+    cursor: pointer;
+    color: rgb(140, 137, 137);
+    text-decoration: none;
+    outline: none;
+    font-size: 1.1rem;
+}
+
+.close__btn:hover {
+    border: 2px solid rgb(228, 216, 216);
+    color: rgb(228, 216, 216);
+}
+
+.cart__list {
+    display: flex;
+    flex-direction: column;
+    width: 98%;
+    height: 342px;
+    background: #171717;
+    align-items: center;
+    border: 1px solid #303030;
+    border-radius: 12px;
+    margin: 0 auto;
+}
+.cart__list .item_cart{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    border-radius: 8px;
+    margin-top: 0.5rem;
+    width: 98%;
+    height: 50px;
+    background-color: #7e8492;
+}
+.item_cart img{
+    border-radius: 8px;
+    margin: 0rem 2rem 0rem 0.2rem;
+    object-fit: cover;
+    width: 40px;
+    height: 90%;
+}
+.item_cart h5{
+    color: white;
+}
+@keyframes show__overlay {
+    from {
+        top: -100%;
+        opacity: 0;
+    }
+    to {
+        top: 0;
+        opacity: 1;
+    }
+}
+
  @media screen and (max-width:700px) {
      .MuiButtonBase-root .Box_Ava {
          display: none;
      }
-
+    .MuiCardContent-root .css-10gsmdd-MuiTypography-root{
+        font-size: 12px;
+    }
      .MuiCardActions-root {
          margin-top: 1.5rem;
      }
