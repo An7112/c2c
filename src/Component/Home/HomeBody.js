@@ -95,13 +95,6 @@ class HomeBody extends Component {
       console.log("Tokenid" + id);
       console.log(this.state.tokenbyid);
     });
-    // axios.get(`https://api.coingecko.com/api/v3/coins/${id}/market_chart?vs_currency=usd&days=14&interval=daily`).then((res) => {
-    //   this.setState(() => ({
-    //     data: res.data.prices,
-    //   }));
-    //   console.log("Tokenid" + id);
-    //   console.log(this.state.data);
-    // });
   }
 
 
@@ -137,6 +130,7 @@ class HomeBody extends Component {
         isEqual = false;
       }
     }
+    console.log(this.state.Coins)
     return (
       <div className="home_content_page">
 
@@ -226,12 +220,6 @@ class HomeBody extends Component {
                   </div>
                 </div>
               </div>
-
-              {/* <div className="Price">
-              <h3>{this.state.tokenbyid.market_data?.current_price ? (
-                <h3>{this.state.tokenbyid.market_data.current_price.usd.toLocaleString()} <i class='bx bx-dollar' ></i></h3>
-              ) : null}</h3>
-            </div> */}
               <div className="detail_2">
 
               </div>

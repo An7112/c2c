@@ -86,7 +86,7 @@
     flex-direction: row;
     justify-content: space-between;
      display: flex;
-     margin-left: 23.8rem;
+     margin-left: 20.5rem;
      border-radius: 6px;
 
  }
@@ -352,7 +352,7 @@
     font-family: 'Brinnan';
 
     font-weight: 700;
-    font-size: 24px;
+    font-size: 15px;
     line-height: 29px;
 
     color: #ffffff;
@@ -393,11 +393,27 @@
     display: flex;
     flex-direction: row;
     align-items: center;
+    justify-content: space-between;
     border-radius: 8px;
     margin-top: 0.5rem;
     width: 98%;
     height: 50px;
     background-color: #7e8492;
+}
+.item_cart .iconPM {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 6%;
+    height: 100%;
+}
+.iconPM h5{
+    cursor: pointer;
+    font-size: 20px;
+}
+.iconPM h5:hover{
+    transform: scale(1.2);
+    transition: 0.3s ease-in-out;
 }
 .item_cart img{
     border-radius: 8px;
@@ -408,6 +424,15 @@
 }
 .item_cart h5{
     color: white;
+}
+.Order .Cart_shop{
+    cursor: pointer;
+    margin-left: 2rem;
+    display: flex;
+    flex-direction: row;
+}
+.Cart_shop i{
+    font-size: 15px;
 }
 @keyframes show__overlay {
     from {
@@ -489,7 +514,7 @@
          height: 140px;
      }
     .OrderSelect .Search_box .inputSearch {
-        width: 120px;
+        width: 90px;
     }
     .OrderSelect .Search_box i{
         margin-left: 0.5rem;
@@ -498,6 +523,9 @@
     }
     .Search_box .inputSearch.active{
        width: 0px;
+    }
+    .Order .Cart_shop{
+        margin: 0;
     }
  }
 

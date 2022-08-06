@@ -12,6 +12,8 @@ import { getCurrentUser } from '../Auth/Services/AuthService';
 import AllProduct from '../UserShop/AllProduct';
 import { useSelector } from "react-redux";
 function Collectibles(props) {
+
+  const {onAdd} = props
   const products = useSelector((state) => state.allReducer.products);
   const Collectibles = products.filter((element) => {
     return element.Collectibles == true
@@ -23,15 +25,13 @@ function Collectibles(props) {
       return element.ProductName.toLowerCase().includes(props.SearchData)
     }
   })
-  const [Cart, setCart] = useState([])
-  const AddCart = index => {
-    setCart(Cart.concat(Data[index]))
-
-  }
-
-  const senData = () => {
-    props.parentCallback(Cart)
-  }
+  // const [Cart, setCart] = useState([])
+  // const AddCart = index => {
+  //   setCart(Cart.concat(Data[index]))
+  // }
+  // const senData = () => {
+  //   props.parentCallback(Cart)
+  // }
   return (
     <div>
       <div className="container">
@@ -64,7 +64,7 @@ function Collectibles(props) {
                   Buy now
                 </Button>
               </Link>
-                <Button size="small" color="primary" onClick={() => AddCart(index)} onChange={senData()}>
+                <Button size="small" color="primary" onClick={() => onAdd(element)}>
                   Add to cart
                 </Button>
             </CardActions>

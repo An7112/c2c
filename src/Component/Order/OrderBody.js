@@ -9,6 +9,7 @@ import Banner from '../../Image/banner.jpg'
 import Banner2 from '../../Image/banner2.jpg'
 import { useSelector, useDispatch } from 'react-redux';
 import { setProducts } from "../../redux/actions/productsActions";
+import { BiMinusCircle, BiPlusCircle } from "react-icons/bi";
 const OrderBody = () => {
   const [user, setUser] = useState("");
   useEffect(() => {
@@ -56,6 +57,36 @@ const OrderBody = () => {
     setCarts(childData)
   }
   const [none, setNone] = useState("none")
+
+  const [cartItems, setCartItems] = useState([]);
+  const onAdd = (product) => {
+    const exist = cartItems.find((x) => x._id === product._id);
+    if (exist) {
+      setCartItems(
+        cartItems.map((x) =>
+          x._id === product._id ? { ...exist, qty: exist.qty + 1 } : x
+        )
+      );
+    } else {
+      setCartItems([...cartItems, { ...product, qty: 1 }]);
+    }
+  };
+  const onRemove = (product) => {
+    const exist = cartItems.find((x) => x._id === product._id);
+    if (exist.qty === 1) {
+      setCartItems(cartItems.filter((x) => x._id !== product._id));
+    } else {
+      setCartItems(
+        cartItems.map((x) =>
+          x._id === product._id ? { ...exist, qty: exist.qty - 1 } : x
+        )
+      );
+    }
+  };
+  const itemsPrice = cartItems.reduce((a, c) => a + c.qty * c.Price, 0);
+  const taxPrice = itemsPrice * 0.11;
+  const shippingPrice = itemsPrice > 2000 ? 0 : 10;
+  const totalPrice = itemsPrice + taxPrice + shippingPrice;
   return (
     <div className='Oder_Content'>
       <div className='Detail_Order'>
@@ -79,28 +110,43 @@ const OrderBody = () => {
               <i class='bx bxl-react' ></i>
               <span className="links_name">Utility</span>
             </li>
-            <i class='bx bx-cart-alt' onClick={() => setNone("block")}></i>
-            <div id='overlay' style={{display: none}}>
+
+            <div id='overlay' style={{ display: none }}>
               <div id='cart__modal'>
                 <div className='cart'>
                   <div className='cart__head'>
                     <p className='cart__head-title'>Cart</p>
+                    <p className='cart__head-title'>Items Price: {itemsPrice} $</p>
+                    <p className='cart__head-title'>Tax Price: {taxPrice} $</p>
+                    <p className='cart__head-title'>Shipping Price: {shippingPrice} $</p>
+                    <p className='cart__head-title' style={{ color: "#4d8796" }}>Total Price: {totalPrice} $</p>
                     <h5 className='close__btn' onClick={() => setNone("none")}>
                       X
                     </h5>
                   </div>
                   <div className='cart__list'>
-                    {Carts.map((element) => (
+                    {cartItems.map((element) => (
                       <div className='item_cart' key={element._id}>
-                        <img src={element.ProductImg} alt=""/>
-                        <h5>{element.ProductName}</h5>
+                        <img src={element.ProductImg} alt="" />
+                        <h5>Product Name: {element.ProductName}</h5>
+                        <h5> {element.qty} x {element.Price} $</h5>
+                        <h5>Total amount: {element.qty * element.Price} $</h5>
+                        <div className='iconPM'>
+                          <h5 onClick={() => onAdd(element)}>{<BiPlusCircle />}</h5>
+                          <h5 onClick={() => onRemove(element)}>{<BiMinusCircle />}</h5>
+                        </div>
+
                       </div>
                     ))}
                   </div>
                 </div>
               </div>
             </div>
-            <h5>{Carts.length}</h5>
+            <div className='Cart_shop'>
+              <i class='bx bx-cart-alt' onClick={() => setNone("block")}></i>
+              <h5>{cartItems.length}</h5>
+            </div>
+
             <div className='Search_box'>
               <input className={btn === true ? "inputSearch active" : "inputSearch"} type='text' placeholder='Search ...' onChange={(e) => setfilSearch(
                 e.target.value
@@ -112,7 +158,7 @@ const OrderBody = () => {
 
           </div>
           <div className='OrderNum'>
-            {ClickBut === "Collectibles" && <Collectibles SearchData={filSearch} parentCallback={callbackFunction} />}
+            {ClickBut === "Collectibles" && <Collectibles SearchData={filSearch} parentCallback={callbackFunction} onAdd={onAdd} />}
             {ClickBut === "Utility" && <Utility SearchData={filSearch} />}
           </div>
         </div>
